@@ -1,4 +1,4 @@
--- NoteBook 7 Covers SQL joins
+-- NoteBook 7 Covers SQL JOINS, VIEWS
 
 CREATE DATABASE company_db_07;
 
@@ -148,3 +148,29 @@ SELECT name FROM admin_users;
 SELECT name, email FROM employees
 UNION
 SELECT name, email FROM admin_users;
+
+
+-- VIEW
+
+CREATE VIEW high_salary_employees AS
+SELECT name, email, salary
+FROM employees
+WHERE salary > 80000.00;
+
+SELECT * FROM high_salary_employees;
+
+-- CREATE a VIEW using JOIN
+CREATE VIEW employee_address_details AS
+SELECT
+    employees.id,
+    employees.name,
+    addresses.city,
+    addresses.state
+FROM employees
+INNER JOIN addresses
+ON employees.id = addresses.employees_id;
+
+SELECT * FROM employee_address_details;
+
+
+SHOW INDEXES FROM employees;
